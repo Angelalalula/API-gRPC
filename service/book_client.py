@@ -34,6 +34,7 @@ def run():
             genre = stringToGenre[input("Input the book genre\n")]
             year = int(input("Input the book publishing year\n"))
 
+            # send the details to create request and add new book to the database
             request = stub.CreateBook(RPC_pb2.CreateBookCreateRequest(isbn=isbn, title=title, author=author, genre=genre, year=year))
             if request.result:
                 print("Book successfully created")
@@ -42,6 +43,8 @@ def run():
 
         elif command == "2":
             isbn = input("\nInput the book's ISBN\n")
+            
+            # send the ISBN number to the search request and retrieve book from database
             response = stub.GetBook(RPC_pb2.GetBookSearchRequest(isbn=isbn))   
             print("\nTitle: " + response.title)
             print("Author: " + response.author)
