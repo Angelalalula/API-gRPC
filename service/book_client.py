@@ -8,6 +8,7 @@ import RPC_pb2_grpc
 import RPC_pb2
 
 
+# given the Genre is of type enum, set converter from Genre to String and vice-versa for decoding and encoding
 genreToString = {
     PB_pb2.HORROR: "Horror",
     PB_pb2.COMEDY: "Comedy",
@@ -21,13 +22,11 @@ stringToGenre = {
 }
 
 def run():
-    # NOTE(gRPC Python Team): .close() is possible on a channel and should be
-    # used in circumstances in which the with statement does not fit the needs
-    # of the code.
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = RPC_pb2_grpc.InventoryServiceStub(channel)
 
-        command = input("Type:\n [1] to create a new book\n [2] to get an existing book's details\n")
+        # take input from user, 1 to create new book, 2 to get info details about an existing book
+        command = input("Input:\n [1] to create a new book\n [2] to get an existing book's details\n")
         if command == "1":
             isbn = input("\nInput the book ISBN\n")
             title = input("Input the book title\n")
