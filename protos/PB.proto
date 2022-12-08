@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+package A3;
+
+enum Genre {
+  HORROR = 0;
+  COMEDY = 1;
+  ROMANCE = 2;
+}
+
+message Book {
+  optional string isbn = 1;
+  optional string title = 2;
+  optional string author = 3;
+  optional int32 year = 4;
+
+  optional Genre genre = 5;
+}
+
+message InventoryItem {
+  optional string number = 1;
+  
+  oneof Media{
+    Book book = 2;
+  }
+
+  enum Status {
+    AVAILABLE = 0;
+    TAKEN = 1;
+  }
+}

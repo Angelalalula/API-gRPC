@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+package A3;
+
+import "PB.proto";
+
+message GetBookSearchRequest {
+  optional string isbn = 1;
+}
+
+message GetBookSearchResponse {
+  optional string isbn = 1;
+  optional string title = 2;
+  optional string author = 3;
+  optional int32 year = 4;
+  optional Genre genre = 5;
+}
+
+
+message CreateBookCreateRequest {
+  optional string isbn = 1;
+  optional string title = 2;
+  optional string author = 3;
+  optional int32 year = 4;
+  optional Genre genre = 5;
+}
+
+message CreateBookCreateResponse {
+  optional bool result = 1;
+}
+
+
+service InventoryService {
+  rpc GetBook(GetBookSearchRequest) returns (GetBookSearchResponse) {
+  }
+
+  rpc CreateBook(CreateBookCreateRequest) returns (CreateBookCreateResponse) {
+  }
+}
